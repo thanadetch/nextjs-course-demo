@@ -4,7 +4,7 @@ import {MongoClient, ObjectId} from "mongodb";
 import Head from "next/head";
 
 export const getStaticPaths = async () => {
-    const client = await MongoClient.connect('mongodb+srv://root:root@cluster0.vywsr.mongodb.net/meetups?retryWrites=true&w=majority')
+    const client = await MongoClient.connect(process.env.DB_HOST)
     const db = client.db();
 
     const meetupsCollection = db.collection('meetups');
@@ -22,7 +22,7 @@ export const getStaticProps = async (context) => {
     const meetupId = context.params.meetupId;
     console.log(meetupId)
 
-    const client = await MongoClient.connect('mongodb+srv://root:root@cluster0.vywsr.mongodb.net/meetups?retryWrites=true&w=majority')
+    const client = await MongoClient.connect(process.env.DB_HOST)
     const db = client.db();
 
     const meetupsCollection = db.collection('meetups');
